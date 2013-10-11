@@ -1,0 +1,24 @@
+{
+  "name": "peoplepool",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "backbone": "~1.0.0",
+    "underscore": "~1.5.2",
+    "requirejs": "~2.1.8",
+    "requirejs-text": "~2.0.10",
+    "requirejs-hbs": "git://github.com/epeli/requirejs-hbs.git",
+    "backbone.localStorage": "~1.1.7",
+    "handlebars.js": "~1.0.12"
+  },
+  "resolutions": {
+    "handlebars.js": "~1.0.12"
+  }
+}
