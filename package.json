@@ -18,6 +18,7 @@
     "grunt-bower": "~0.7.0",
     "grunt-contrib-copy": "~0.4.1",
     "bower": "~1.2.7",
-    "handlebars": "~1.0.12"
+    "handlebars": "~1.0.12",
+    "less": "~1.4.2"
   }
 }

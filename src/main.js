@@ -33,6 +33,9 @@ require(['peoplepool', 'jquery', 'backbone.localstorage',
         'lib/jquery.keyevent', 'lib/jquery.loadcss'
     ],
     function(app, $) {
-        $.loadCSS('//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
+        $.loadCSS([
+            '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css',
+            'css/peoplepool.css'
+        ]);
         new app.AppView().render();
     });

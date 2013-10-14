@@ -6,7 +6,7 @@ define(['./view', './people-list-item', 'hbs!templates/people-list'],
 
             initialize: function() {
                 this.setElement(this.template());
-                this.$list = this.$('ul');
+                this.$list = this.$('.people-list__item-list');
 
                 this.people = this.options.people || null;
                 // this.listenTo(this.pubSub, 'search:set', this.setupSearch, this);
