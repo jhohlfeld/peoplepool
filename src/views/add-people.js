@@ -26,9 +26,9 @@ define(['jquery', './view', 'hbs!templates/add-people', ''],
                         }
                     case 'click':
 
-                        this.people.add(new this.people.model({
+                        this.people.create({
                             name: this.$name.val()
-                        }));
+                        });
                         this.$name.val('');
                         break;
                 }

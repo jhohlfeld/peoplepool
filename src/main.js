@@ -5,7 +5,7 @@ requirejs.config({
         underscore: 'lib/underscore',
         backbone: 'lib/backbone',
         handlebars: 'lib/handlebars',
-        'backbone.localstorage' : 'lib/backbone.localStorage',
+        'backbone.localstorage': 'lib/backbone.localStorage',
         text: 'lib/requirejs-text',
         hbs: 'lib/requirejs-hbs'
     },
@@ -16,8 +16,8 @@ requirejs.config({
         underscore: {
             exports: '_'
         },
-        'backbone.localstorage':{
-            deps:['underscore', 'backbone']
+        'backbone.localstorage': {
+            deps: ['underscore', 'backbone']
         },
         backbone: {
             deps: ['underscore', 'jquery'],
@@ -29,7 +29,10 @@ requirejs.config({
     }
 });
 
-require(['peoplepool', 'backbone.localstorage', 'lib/jquery.keyevent'],
-    function(app) {
+require(['peoplepool', 'jquery', 'backbone.localstorage',
+        'lib/jquery.keyevent', 'lib/jquery.loadcss'
+    ],
+    function(app, $) {
+        $.loadCSS('//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
         new app.AppView().render();
     });

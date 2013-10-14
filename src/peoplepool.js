@@ -10,7 +10,7 @@ define(['backbone', 'views/search', 'views/people-list', 'views/add-people'],
 
             initialize: function() {
                 var people = new app.PeopleList();
-                people.add(new people.model({name:'Test'}))
+                people.fetch();
                 this.views = {
                     search: new SearchView(),
                     peopleList: new PeopleListView({
