@@ -1,9 +1,9 @@
-define(['backbone', 'views/search', 'views/people-list', 'views/add-people'],
-    function(Backbone, SearchView, PeopleListView, AddPeople) {
+define(['backbone', 'views/view', 'views/people-list', 'views/add-people'],
+    function(Backbone, View, PeopleListView, AddPeople) {
 
         var app = {};
 
-        app.AppView = Backbone.View.extend({
+        app.AppView = View.extend({
             el: '#peoplepool',
 
             views: {},
@@ -12,7 +12,6 @@ define(['backbone', 'views/search', 'views/people-list', 'views/add-people'],
                 var people = new app.PeopleList();
                 people.fetch();
                 this.views = {
-                    search: new SearchView(),
                     peopleList: new PeopleListView({
                         people: people
                     }),
@@ -20,6 +19,10 @@ define(['backbone', 'views/search', 'views/people-list', 'views/add-people'],
                         people: people
                     })
                 };
+
+                this.listenTo(this.pubSub, 'peoplelist:select', function(item) {
+                    console.log('selected: ' + item.model.get('name'));
+                });
             },
 
             render: function() {
