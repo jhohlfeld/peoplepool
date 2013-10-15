@@ -11,15 +11,9 @@
 
 #peoplepool .people-item {
 	min-width: 15em;
-	overflow: hidden;
-	left: 100%;
-	top: 1em;
+	left: 101%;
+	top: 0;
 	position: absolute;
-}
-
-#peoplepool .people-item .wrap.panel {
-	position: relative;
-	left: -2%;
 }
 
 #peoplepool .people-item .btn-settings {
@@ -31,4 +25,23 @@
 
 #peoplepool .people-item .tags .label {
 	cursor: pointer;
+}
+
+.people-item__settings {
+	position: absolute;
+	top: 2em;
+	left: 40%;
+}
+
+.people-item__settings.open {
+	display:block;
+}
+
+.settings {
+	float: right;
+	color: #ccc;
+}
+
+a:hover.settings, a:focus.settings {
+	text-decoration: none;
 }

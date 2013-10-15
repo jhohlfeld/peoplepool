@@ -1,6 +1,6 @@
 {
   "name": "peoplepool",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "description": "Case study demonstrating the capabilities of a loosely coupled program architecture using backbone.js views and publish/subscribe pattern.",
   "main": "index.js",
   "scripts": {
@@ -8,17 +8,20 @@
   },
   "author": "Jakob Hohlfeld <jakob.hohlfeld@netronaut.de>",
   "license": "BSD-2-Clause",
-  "devDependencies": {
+  "dependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt-template-jasmine-requirejs": "~0.1.7",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jasmine": "~0.5.2",
     "grunt-bower": "~0.7.0",
     "grunt-contrib-copy": "~0.4.1",
     "bower": "~1.2.7",
-    "handlebars": "~1.0.12",
-    "less": "~1.4.2"
-  }
+    "grunt-contrib-jshint": "~0.6.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@netronaut.de:peoplepool"
+  },
+  "keywords": [
+    "backbone",
+    "lesson"
+  ]
 }

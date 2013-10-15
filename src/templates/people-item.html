@@ -1,18 +1,23 @@
-<div class="people-item">
-    <div class="wrap panel panel-default">
-        <div class="panel-heading">
-            Details
-            <span class="btn-settings glyphicon glyphicon-cog"></span>
-        </div>
-        <div class="panel-body">
-            <label>Name</label>
-            <p>{{name}}</p>
+<div class="people-item panel panel-default">
+    <div class="panel-heading">
+        Details
+        <a id="settings1" class="settings" data-toggle="dropdown" role="button" href="#settings-menu">
+            <i class="icon-chevron-sign-down"></i>
+        </a>
+        <ul id="settings-menu" class="people-item__settings dropdown-menu" role="menu" aria-labelledby="settings1">
+            <li role="presentation">
+                <a href="" role="menuitem">Test</a>
+            </li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <label>Name</label>
+        <p>{{name}}</p>
 
-            <label>Tags</label>
-            <p class="tags">{{#each tags}}
-                <span class="label label-primary">{{tag}}</span>
-                {{/each}}
-            </p>
-        </div>
+        <label>Tags</label>
+        <p class="tags">{{#each tags}}
+            <span class="label label-primary">{{tag}}</span>
+            {{/each}}
+        </p>
     </div>
 </div>
