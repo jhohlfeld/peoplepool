@@ -1,5 +1,7 @@
-define(['backbone', 'views/view', 'views/people-list', 'views/add-people'],
-    function(Backbone, View, PeopleListView, AddPeople) {
+define(['backbone', 'views/view', 'views/people-list', 'views/add-people',
+        'views/people-item'
+    ],
+    function(Backbone, View, PeopleListView, AddPeople, PeopleItem) {
 
         var app = {};
 
@@ -15,13 +17,16 @@ define(['backbone', 'views/view', 'views/people-list', 'views/add-people'],
                     peopleList: new PeopleListView({
                         people: people
                     }),
+                    peopleItem: new PeopleItem({
+                        model: new app.Person()
+                    }),
                     addPeople: new AddPeople({
                         people: people
-                    })
+                    }),
                 };
 
                 this.listenTo(this.pubSub, 'peoplelist:select', function(item) {
-                    console.log('selected: ' + item.model.get('name'));
+                    this.views.peopleItem.show(item.model);
                 });
             },
 
