@@ -1,4 +1,18 @@
 <div class="people-item">
-    <div class="people-item__name name">{{name}}</div>
-    <div class="people-item__tags tags">{{tags}}</div>
+    <div class="wrap panel panel-default">
+        <div class="panel-heading">
+            Details
+            <span class="btn-settings glyphicon glyphicon-cog"></span>
+        </div>
+        <div class="panel-body">
+            <label>Name</label>
+            <p>{{name}}</p>
+
+            <label>Tags</label>
+            <p>{{#each tags}}
+                <span class="label label-primary">{{tag}}</span>
+                {{/each}}
+            </p>
+        </div>
+    </div>
 </div>

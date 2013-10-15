@@ -1,10 +1,30 @@
 @charset "utf-8";
 
 #peoplepool {
+	position: relative;
 	width: 350px;
 	margin: 2em auto;
 }
 
 #people-list {
-	
+}
+
+#peoplepool .people-item {
+	min-width: 15em;
+	overflow: hidden;
+	left: 100%;
+	top: 1em;
+	position: absolute;
+}
+
+#peoplepool .people-item .wrap.panel {
+	position: relative;
+	left: -2%;
+}
+
+#peoplepool .people-item .btn-settings {
+    text-align: right;
+    float: right;
+    color: rgba(0, 0, 0, .25);
+    cursor: pointer;
 }

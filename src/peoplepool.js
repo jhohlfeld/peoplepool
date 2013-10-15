@@ -28,6 +28,9 @@ define(['backbone', 'views/view', 'views/people-list', 'views/add-people',
                 this.listenTo(this.pubSub, 'peoplelist:select', function(item) {
                     this.views.peopleItem.show(item.model);
                 });
+                this.listenTo(this.pubSub, 'peoplelist:unselect', function() {
+                    this.views.peopleItem.hide();
+                });
             },
 
             render: function() {
