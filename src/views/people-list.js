@@ -27,6 +27,9 @@ define(['underscore', './view', './people-list-item',
                     this.remove(model);
                     this.render();
                 });
+                this.listenTo(this.people, 'change:name', function(model) {
+                    this.render();
+                });
                 this.addAll(this.people);
             },
 

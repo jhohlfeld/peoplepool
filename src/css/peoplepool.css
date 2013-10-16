@@ -10,7 +10,7 @@
 }
 
 #peoplepool .people-item {
-	min-width: 15em;
+	width: 20em;
 	left: 105%;
 	top: 0;
 	position: absolute;
@@ -49,12 +49,19 @@ a:hover.settings, a:focus.settings {
 .editable {
 	position: relative;
 	cursor: pointer;
+	line-height: 2.45em;
+}
+
+.editable span {
+	width: 90%;
+	overflow: hidden;
+	display: block;
 }
 
 .editable i[class^="icon-"] {
 	position: absolute;
-	left: 90%;
-	top: 15%;
+	left: 92%;
+	top: 30%;
 	color: #ccc;
 	display: none;
 }

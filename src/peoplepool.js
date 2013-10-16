@@ -1,4 +1,4 @@
-define(['backbone', 'views/view', 'views/people-list', 'views/add-people',
+define(['lib/backbone-plugin', 'views/view', 'views/people-list', 'views/add-people',
         'views/people-item', 'models/models'
     ],
     function(Backbone, View, PeopleListView, AddPeople,
@@ -13,8 +13,14 @@ define(['backbone', 'views/view', 'views/people-list', 'views/add-people',
             views: {},
 
             initialize: function() {
+
+                // people collection
                 var people = new app.PeopleList();
+                people.on('change', function(model) {
+                    this.sync('update', model);
+                });
                 people.fetch();
+
                 this.views = {
                     peopleList: new PeopleListView({
                         people: people

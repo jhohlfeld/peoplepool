@@ -15,13 +15,18 @@ define(['underscore', './view', 'hbs!templates/people-list-item'],
 
             render: function() {
                 this.setElement(this.template(this.model.attributes));
+                this._selState();
                 return this;
             },
 
             select: function(selected) {
                 this.isSelected = selected;
-                this.$el[(this.isSelected ? 'add' : 'remove') + 'Class']('active');
+                this._selState();
                 this.trigger('select', this.isSelected);
+            },
+
+            _selState:function() {
+                this.$el[(this.isSelected ? 'add' : 'remove') + 'Class']('active');
             },
 
             onClick: function() {

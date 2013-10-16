@@ -5,4 +5,5 @@ define(['handlebars'], function(Handlebars) {
         return (value && typeof value === 'string') ? value.toUpperCase() : '';
     });
 
+    return Handlebars;
 });

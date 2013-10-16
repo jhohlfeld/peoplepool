@@ -4,8 +4,10 @@ define(['text!templates/partials.html', 'handlebars', 'jquery'],
         var $parts = $(tpl).filter('script');
 
         $parts.each(function(i, el) {
-            var $el = $(el);
-            Handlebars.registerPartial($el.attr('id'), $el.html());
+            var $el = $(el),
+                name = $el.attr('id'),
+                compiled = Handlebars.compile($el.html());
+            Handlebars.registerPartial(name, compiled);
         });
-        
+
     });
