@@ -11,7 +11,7 @@
 
 #peoplepool .people-item {
 	min-width: 15em;
-	left: 101%;
+	left: 105%;
 	top: 0;
 	position: absolute;
 }
@@ -44,4 +44,26 @@
 
 a:hover.settings, a:focus.settings {
 	text-decoration: none;
+}
+
+.editable {
+	position: relative;
+	cursor: pointer;
+}
+
+.editable i[class^="icon-"] {
+	position: absolute;
+	left: 90%;
+	top: 15%;
+	color: #ccc;
+	display: none;
+}
+
+.editable:hover i[class^="icon-"] {
+	display: block;
+}
+
+.light {
+	font-style: italic;
+	color: #ccc;
 }

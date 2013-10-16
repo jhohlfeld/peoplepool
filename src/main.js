@@ -33,7 +33,9 @@ requirejs.config({
     }
 });
 
-require(['peoplepool', 'jquery', 'backbone.localstorage', 'bootstrap',
+require(['peoplepool', 'jquery', 'backbone.localstorage',
+        'bootstrap', 
+        'lib/handlebars-helper', 'lib/handlebars-partials',
         'lib/jquery.keyevent', 'lib/jquery.loadcss'
     ],
     function(app, $) {

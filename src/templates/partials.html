@@ -1,0 +1,15 @@
+<script id="editable" type="text/x-handlebars-template">
+    <p class="editable">
+    {{#if this}}
+    	{{this}}
+    {{else}}
+    	<span class="light">Enter value here</span>
+    {{/if}}
+    <i class="icon-edit"></i>
+    </p>
+</script>
+
+<script id="editable-edit" type="text/x-handlebars-template">
+    <input class="editable form-control" name="this.key"
+        value="{{this}}" />
+</script>

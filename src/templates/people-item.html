@@ -1,7 +1,7 @@
 <div class="people-item panel panel-default">
     <div class="panel-heading">
         Details
-        <a class="settings" data-toggle="dropdown" role="button" data-target="#settings-menu">
+        <a class="settings" data-toggle="dropdown" role="button" href="#settings-menu">
             <i class="icon-chevron-sign-down"></i>
         </a>
         <ul id="settings-menu" class="people-item__settings dropdown-menu" role="menu" aria-labelledby="settings1">
@@ -11,13 +11,23 @@
         </ul>
     </div>
     <div class="panel-body">
-        <label>Name</label>
-        <p>{{name}}</p>
+
+        <div class="form-group">
+            <label>Name</label>
+            {{> editable name}}
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            {{> editable email}}
+        </div>
 
         <label>Tags</label>
         <p class="tags">{{#each tags}}
             <span class="label label-primary">{{tag}}</span>
             {{/each}}
         </p>
+
     </div>
+
 </div>

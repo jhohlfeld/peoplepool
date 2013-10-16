@@ -1,7 +1,9 @@
 define(['backbone', 'views/view', 'views/people-list', 'views/add-people',
-        'views/people-item'
+        'views/people-item', 'models/models'
     ],
-    function(Backbone, View, PeopleListView, AddPeople, PeopleItem) {
+    function(Backbone, View, PeopleListView, AddPeople,
+        PeopleItem, models,
+        partials) {
 
         var app = {};
 
@@ -18,7 +20,7 @@ define(['backbone', 'views/view', 'views/people-list', 'views/add-people',
                         people: people
                     }),
                     peopleItem: new PeopleItem({
-                        model: new app.Person()
+                        model: new models.Person()
                     }),
                     addPeople: new AddPeople({
                         people: people
@@ -40,15 +42,8 @@ define(['backbone', 'views/view', 'views/people-list', 'views/add-people',
             },
         });
 
-        app.Person = Backbone.Model.extend({
-            defaults: {
-                name: '',
-                tags: []
-            }
-        });
-
         app.PeopleList = Backbone.Collection.extend({
-            model: app.Person,
+            model: models.Person,
 
             localStorage: new Backbone.LocalStorage('people-backbone'),
 

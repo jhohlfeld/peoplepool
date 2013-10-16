@@ -18,10 +18,12 @@ define(['underscore', './view', './people-list-item',
 
                 this.people = this.options.people || null;
                 this.listenTo(this.people, 'add', function(model) {
+                    this.deselect();
                     this.add(model);
                     this.render();
                 });
                 this.listenTo(this.people, 'destroy', function(model) {
+                    this.deselect();
                     this.remove(model);
                     this.render();
                 });
@@ -43,7 +45,7 @@ define(['underscore', './view', './people-list-item',
                 }, this);
             },
 
-            remove:function(model) {
+            remove: function(model) {
                 delete(this.orderIndex[model.cid]);
             },
 
@@ -71,6 +73,15 @@ define(['underscore', './view', './people-list-item',
                 this.pubSub.trigger('peoplelist:select', selItem);
                 this.selectedCurrent = selItem;
                 this.selectedCurrent.select(true);
+            },
+
+            deselect: function() {
+                if (!this.selectedCurrent) {
+                    return;
+                }
+                this.pubSub.trigger('peoplelist:unselect', this.selectedCurrent);
+                this.selectedCurrent.select(false);
+                this.selectedCurrent = null;
             }
         });
 

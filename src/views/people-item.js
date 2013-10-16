@@ -7,7 +7,8 @@ define(['./view', 'hbs!templates/people-item'],
             visible: false,
 
             events: {
-                'click [data-action=delete]' : 'delete'
+                'click [data-action=delete]' : 'delete',
+                'click .editable' : 'edit'
             },
 
             initialize: function() {
@@ -59,6 +60,10 @@ define(['./view', 'hbs!templates/people-item'],
             delete:function(e) {
                 this.model.destroy();
                 this.hide();
+            },
+
+            edit: function(e) {
+                
             }
 
         });
