@@ -21,7 +21,10 @@ define(['underscore', './view', './people-list-item',
                     this.add(model);
                     this.render();
                 });
-
+                this.listenTo(this.people, 'destroy', function(model) {
+                    this.remove(model);
+                    this.render();
+                });
                 this.addAll(this.people);
             },
 
@@ -40,6 +43,10 @@ define(['underscore', './view', './people-list-item',
                 }, this);
             },
 
+            remove:function(model) {
+                delete(this.orderIndex[model.cid]);
+            },
+
             render: function() {
                 var l = this.$list;
                 l.html('');
@@ -56,7 +63,7 @@ define(['underscore', './view', './people-list-item',
                     this.pubSub.trigger('peoplelist:unselect', selItem);
                     return;
                 }
-                if(this.selectedCurrent) {
+                if (this.selectedCurrent) {
                     this.selectedCurrent.select(false);
                 }
                 this.pubSub.trigger('peoplelist:unselect',

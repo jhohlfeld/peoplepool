@@ -10,7 +10,12 @@ define(['underscore', './view', 'hbs!templates/people-list-item'],
             },
 
             initialize: function() {
+
+            },
+
+            render: function() {
                 this.setElement(this.template(this.model.attributes));
+                return this;
             },
 
             select: function(selected) {

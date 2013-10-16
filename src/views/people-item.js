@@ -6,6 +6,10 @@ define(['./view', 'hbs!templates/people-item'],
 
             visible: false,
 
+            events: {
+                'click [data-action=delete]' : 'delete'
+            },
+
             initialize: function() {
                 this.setElement(this.template(this.model.attributes));
                 this.$el.hide();
@@ -50,6 +54,11 @@ define(['./view', 'hbs!templates/people-item'],
                 }
 
                 return this;
+            },
+
+            delete:function(e) {
+                this.model.destroy();
+                this.hide();
             }
 
         });
