@@ -10,6 +10,11 @@ module.exports = function(grunt) {
                     cwd: 'src/',
                     src: ['**'],
                     dest: 'build/'
+                }, {
+                    expand: true,
+                    cwd: 'bower_components/bootstrap/less/',
+                    src: ['*.less', '!bootstrap.less'],
+                    dest: 'build/less/'
                 }]
             }
         },

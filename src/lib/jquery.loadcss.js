@@ -1,8 +1,10 @@
 define(['jquery'], function($) {
     var loadCSS = function(url, callback) {
         var f = function(u) {
+            var m, type = (m = u.match(/.(\w+)$/)) ? m[1] : 'css',
+                rel = 'stylesheet' + (type == 'css' ? '' : '/' + type);
             $('<link>', {
-                rel: 'stylesheet',
+                rel: rel,
                 type: 'text/css',
                 'href': u
             }).on('load', function() {

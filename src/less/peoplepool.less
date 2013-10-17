@@ -1,0 +1,74 @@
+#peoplepool {
+	position: relative;
+	width: 20em;
+	margin: 2em auto;
+}
+
+#people-list {
+}
+
+#peoplepool .people-item {
+	width: 20em;
+	left: 105%;
+	top: 0;
+	position: absolute;
+}
+
+#peoplepool .people-item .btn-settings {
+    text-align: right;
+    float: right;
+    color: rgba(0, 0, 0, .25);
+    cursor: pointer;
+}
+
+#peoplepool .people-item .tags .label {
+	cursor: pointer;
+}
+
+.people-item__settings {
+	position: absolute;
+	top: 2em;
+	left: 40%;
+}
+
+.people-item__settings.open {
+	display:block;
+}
+
+.settings {
+	float: right;
+	color: #ccc;
+}
+
+a:hover.settings, a:focus.settings {
+	text-decoration: none;
+}
+
+.editable {
+	position: relative;
+	cursor: pointer;
+	line-height: 2.45em;
+}
+
+.editable span {
+	width: 90%;
+	overflow: hidden;
+	display: block;
+}
+
+.editable i[class^="icon-"] {
+	position: absolute;
+	left: 92%;
+	top: 30%;
+	color: #ccc;
+	display: none;
+}
+
+.editable:hover i[class^="icon-"] {
+	display: block;
+}
+
+.light {
+	font-style: italic;
+	color: #ccc;
+}
