@@ -25,13 +25,27 @@ module.exports = function(grunt) {
                     stripJsAffix: true
                 }
             }
+        },
+        less : {
+            development : {
+                options : {
+                    paths: [
+                        'bower_components/bootstrap/less/',
+                        'src/less/'
+                    ]
+                },
+                files: {
+                    'build/css/peoplepool.css' : 'src/less/main.less'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-bower');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
-    grunt.registerTask('build', ['clean', 'copy:build', 'bower:build']);
+    grunt.registerTask('build', ['clean', 'copy:build', 'bower:build', 'less:development']);
 
 };

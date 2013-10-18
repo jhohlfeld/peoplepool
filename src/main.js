@@ -29,9 +29,6 @@ requirejs.config({
         },
         bootstrap: {
             deps: ['jquery']
-        },
-        'lib/less': {
-            exports: 'less'
         }
     }
 });
@@ -43,14 +40,9 @@ require(['peoplepool', 'jquery',
     ],
     function(app, $) {
         $.loadCSS([
-            // '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css',
-            'less/style.less',
-            '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css',
-            // 'css/peoplepool.css'
+            'css/peoplepool.css',
+            '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
         ]);
-
-        // less has to be loaded after LESS file
-        require(['lib/less']);
 
         new app.AppView().render();
     });

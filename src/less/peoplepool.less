@@ -12,63 +12,64 @@
 	left: 105%;
 	top: 0;
 	position: absolute;
-}
 
-#peoplepool .people-item .btn-settings {
-    text-align: right;
-    float: right;
-    color: rgba(0, 0, 0, .25);
-    cursor: pointer;
-}
+	.btn-settings {
+	    text-align: right;
+	    float: right;
+	    color: @gray-dark;
+	    cursor: pointer;
+	}
 
-#peoplepool .people-item .tags .label {
-	cursor: pointer;
+	.tags .label {
+		cursor: pointer;
+	}
+
+	.btn-settings {
+		float: right;
+		color: @gray-light;
+
+		&:hover, &:focus {
+			text-decoration: none;
+		}
+	}
+
 }
 
 .people-item__settings {
 	position: absolute;
 	top: 2em;
 	left: 40%;
-}
-
-.people-item__settings.open {
-	display:block;
-}
-
-.settings {
-	float: right;
-	color: #ccc;
-}
-
-a:hover.settings, a:focus.settings {
-	text-decoration: none;
+	
+	&.open {
+		display:block;
+	}
 }
 
 .editable {
 	position: relative;
 	cursor: pointer;
 	line-height: 2.45em;
-}
 
-.editable span {
-	width: 90%;
-	overflow: hidden;
-	display: block;
-}
+	span {
+		width: 90%;
+		overflow: hidden;
+		display: block;
+	}
+	
+	i[class^="icon-"] {
+		position: absolute;
+		left: 92%;
+		top: 30%;
+		color: @gray-light;
+		display: none;
+	}
 
-.editable i[class^="icon-"] {
-	position: absolute;
-	left: 92%;
-	top: 30%;
-	color: #ccc;
-	display: none;
-}
-
-.editable:hover i[class^="icon-"] {
-	display: block;
+	&:hover i[class^="icon-"] {
+		display: block;
+	}
 }
 
 .light {
 	font-style: italic;
-	color: #ccc;
+	color: @gray-light;
 }
