@@ -1,9 +1,11 @@
-define(['lib/backbone-plugin', 'views/view', 'views/people-list', 'views/add-people',
-        'views/people-item', 'models/models'
+define(['lib/backbone-plugin',
+        'views/view', 'views/people-list', 'views/add-people',
+        'views/people-item', 'views/master',
+        'models/models'
     ],
     function(Backbone, View, PeopleListView, AddPeople,
-        PeopleItem, models,
-        partials) {
+        PeopleItem, MasterView,
+        models) {
 
         var app = {};
 
@@ -39,12 +41,18 @@ define(['lib/backbone-plugin', 'views/view', 'views/people-list', 'views/add-peo
                 this.listenTo(this.pubSub, 'peoplelist:unselect', function() {
                     this.views.peopleItem.hide();
                 });
+
+                this.masterView = new MasterView();
             },
 
             render: function() {
-                this.$el.html('').append(_.map(this.views, function(v) {
-                    return v.render().$el;
-                }));
+                var $mv = this.masterView.render().$el;
+                $mv.find('#mainview').append(
+                    this.views.peopleList.render().el,
+                    this.views.addPeople.render().el);
+                $mv.find('#sidebar').append(
+                    this.views.peopleItem.render().el);
+                $mv.appendTo(this.$el.html(''));
             },
         });
 
