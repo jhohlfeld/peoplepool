@@ -1,11 +1,9 @@
 <script id="editable" type="text/x-handlebars-template">
     <p class="editable">
         <span>
-            {{#if this}}
-            	{{this}}
-            {{else}}
-            	<span class="light">Enter value here</span>
-            {{/if}}
+            <%if(value) { print(value) } else {%>
+            	<i class="text-muted">Enter value here</i>
+            <%}%>
         </span>
         <i class="icon-edit"></i>
     </p>

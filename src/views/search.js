@@ -1,4 +1,4 @@
-define(['./view', 'hbs!templates/search'], function(View, tpl) {
+define(['./view', 'ldsh!templates/search'], function(View, tpl) {
     var SearchView = View.extend({
 
         template: tpl,

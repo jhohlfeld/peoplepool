@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', './view', 'hbs!templates/people-item', 'handlebars'],
-    function($, _, View, tpl, Handlebars) {
+define(['jquery', 'lodash', './view', 'ldsh!templates/people-item'],
+    function($, _, View, tpl) {
         return View.extend({
 
             template: tpl,
@@ -71,18 +71,18 @@ define(['jquery', 'underscore', './view', 'hbs!templates/people-item', 'handleba
                     $group = $target.parents('[data-attr]'),
                     attr = $group.data('attr');
                 if (attr) {
-                    var $editable = $group.find('.editable'),
-                        template = Handlebars.partials['editable-edit'],
-                        context = {
-                            'key': attr,
-                            'value': this.model.get(attr)
-                        };
-                    this.$edit = $(template(context));
-                    $editable.before(this.$edit).remove();
-                    this.$edit.on({
-                        'keyup': _.bind(this.save, this),
-                        'blur': _.bind(this.restore, this)
-                    }).focus();
+                    // var $editable = $group.find('.editable'),
+                    //     template = Handlebars.partials['editable-edit'],
+                    //     context = {
+                    //         'key': attr,
+                    //         'value': this.model.get(attr)
+                    //     };
+                    // this.$edit = $(template(context));
+                    // $editable.before(this.$edit).remove();
+                    // this.$edit.on({
+                    //     'keyup': _.bind(this.save, this),
+                    //     'blur': _.bind(this.restore, this)
+                    // }).focus();
                 }
             },
 
@@ -99,14 +99,14 @@ define(['jquery', 'underscore', './view', 'hbs!templates/people-item', 'handleba
             },
 
             restore: function(e) {
-                if (!this.$edit) {
-                    return;
-                }
-                var key = this.$edit.attr('name'),
-                    template = Handlebars.partials['editable'];
-                this.$edit.before($(template(this.model.get(key)))).remove();
-                this.$edit = null;
-                this.delegateEvents(this.events);
+                // if (!this.$edit) {
+                //     return;
+                // }
+                // var key = this.$edit.attr('name'),
+                //     template = Handlebars.partials['editable'];
+                // this.$edit.before($(template(this.model.get(key)))).remove();
+                // this.$edit = null;
+                // this.delegateEvents(this.events);
             }
 
         });

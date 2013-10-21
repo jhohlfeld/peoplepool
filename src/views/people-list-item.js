@@ -1,4 +1,4 @@
-define(['underscore', './view', 'hbs!templates/people-list-item'],
+define(['lodash', './view', 'ldsh!templates/people-list-item'],
     function(_, View, tpl) {
         return View.extend({
 

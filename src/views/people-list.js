@@ -1,5 +1,5 @@
-define(['underscore', './view', './people-list-item',
-        'hbs!templates/people-list'
+define(['lodash', './view', './people-list-item',
+        'ldsh!templates/people-list'
     ],
     function(_, View, PeopleListItemView, tpl) {
         var PeopleListView = View.extend({

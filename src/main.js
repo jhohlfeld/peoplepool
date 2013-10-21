@@ -2,40 +2,37 @@ requirejs.config({
     baseUrl: '',
     paths: {
         jquery: 'lib/jquery',
-        underscore: 'lib/underscore',
         backbone: 'lib/backbone',
-        handlebars: 'lib/handlebars',
+        lodash: 'lib/lodash',
         'backbone.localstorage': 'lib/backbone.localStorage',
         text: 'lib/requirejs-text',
-        hbs: 'lib/requirejs-hbs',
+        ldsh: 'lib/lodash-template-loader',
         bootstrap: 'lib/bootstrap',
+        knockout: 'lib/knockout',
     },
-    hbs: {
-        templateExtension: ".html"
+    map: {
+        '*': {
+            underscore: 'lodash'
+        }
     },
     shim: {
-        underscore: {
-            exports: '_'
-        },
         'backbone.localstorage': {
-            deps: ['underscore', 'backbone']
+            deps: ['lodash', 'backbone']
         },
         backbone: {
-            deps: ['underscore', 'jquery'],
+            deps: ['lodash', 'jquery'],
             exports: 'Backbone'
-        },
-        handlebars: {
-            exports: 'Handlebars'
         },
         bootstrap: {
             deps: ['jquery']
+        },
+        knockout: {
+
         }
     }
 });
 
 require(['peoplepool', 'jquery',
-        'bootstrap',
-        'lib/handlebars-helper', 'lib/handlebars-partials',
         'lib/jquery.keyevent', 'lib/jquery.loadcss'
     ],
     function(app, $) {
