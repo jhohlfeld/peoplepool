@@ -1,12 +1,11 @@
 define(['lib/backbone.plugin',
         'views/view', 'views/people-list', 'views/add-people',
         'views/people-item', 'views/master',
-        'models/models',
-        'lib/lodash.partials'
+        'models/models', 'lib/lodash.partials'
     ],
     function(Backbone, 
-        View, PeopleListView, AddPeople,
-        PeopleItem, MasterView,
+        View, PeopleListView, AddPeopleView,
+        PeopleItemView, MasterView,
         models) {
 
         var app = {};
@@ -29,10 +28,8 @@ define(['lib/backbone.plugin',
                     peopleList: new PeopleListView({
                         people: people
                     }),
-                    peopleItem: new PeopleItem({
-                        model: new models.Person()
-                    }),
-                    addPeople: new AddPeople({
+                    peopleItem: new PeopleItemView({model:new models.Person()}),
+                    addPeople: new AddPeopleView({
                         people: people
                     }),
                 };

@@ -1,6 +1,6 @@
-define(['backbone'], function(Backbone) {
+define(['lib/backbone.plugin'], function(Backbone) {
     return {
-        'Person': Backbone.Model.extend({
+        'Person': Backbone.Epoxy.Model.extend({
             defaults: {
                 name: '',
                 email: '',

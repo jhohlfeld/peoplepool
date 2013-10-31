@@ -1,3 +1,7 @@
+.text-muted {
+	font-style: italic;
+}
+
 #peoplepool {
 	position: relative;
 	width: 80%;
@@ -41,26 +45,31 @@
 	}
 }
 
-.editable {
+p.editable {
+
 	position: relative;
 	cursor: pointer;
 	line-height: 2.45em;
-
-	span {
-		width: 90%;
-		overflow: hidden;
-		display: block;
+	
+	input {
+		width: 96%;
 	}
 	
+	div {
+		width: 96%;
+		display: block;
+		overflow: hidden;
+	}
+
 	i[class^="icon-"] {
 		position: absolute;
-		left: 92%;
+		left: 97%;
 		top: 30%;
 		color: @gray-light;
 		display: none;
 	}
 
-	&:hover i[class^="icon-"] {
+	&:hover > i[class^="icon-"] {
 		display: block;
 	}
 }

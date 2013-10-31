@@ -1,15 +1,6 @@
 <script id="editable" type="text/x-handlebars-template">
     <p class="editable">
-        <span>
-            <%if(value) { print(value) } else {%>
-            	<i class="text-muted">Enter value here</i>
-            <%}%>
-        </span>
+        <input name="<%=key%>" type="text" class="form-control" />
         <i class="icon-edit"></i>
     </p>
-</script>
-
-<script id="editable-edit" type="text/x-handlebars-template">
-    <input class="form-control" name="{{this.key}}"
-        value="{{this.value}}" />
 </script>

@@ -11,24 +11,21 @@
             </li>
         </ul>
     </div>
+
     <div class="panel-body">
 
-        <div class="form-group" data-attr="name">
+        <div class="form-group">
             <label>Name</label>
-            <%=partial('editable', {value:name})%>
+            <%=partial('editable', {key:'name', value:name})%>
         </div>
 
-        <div class="form-group" data-attr="email">
+        <div class="form-group">
             <label>Email</label>
-            <%=partial('editable', {value:email})%>
+            <%=partial('editable', {key:'email', value:email})%>
         </div>
 
         <label>Tags</label>
-        <p class="tags"><%_.each(tags, function(tag) {%>
-            <span class="label label-primary"><%=tag%></span>
-            <%})%>
-        </p>
-
+        <p class="tags"></p>
     </div>
 
 </div>

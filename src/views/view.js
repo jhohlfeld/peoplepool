@@ -1,12 +1,12 @@
-define(['jquery', 'backbone', 'util/pubsub'], function($, Backbone, pubSub) {
-    var View = Backbone.View.extend({
+define(['jquery', 'lib/backbone.plugin', 'util/pubsub'], function($, Backbone, pubSub) {
+    var View = Backbone.Epoxy.View.extend({
 
         pubSub: null,
 
         constructor: function() {
             this.pubSub = View.pubSub;
 
-            Backbone.View.apply(this, arguments);
+            Backbone.Epoxy.View.apply(this, arguments);
         }
 
     });

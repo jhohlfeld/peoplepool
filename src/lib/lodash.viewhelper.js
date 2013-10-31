@@ -24,10 +24,10 @@ define(['lodash'], function(_) {
     _.mixin({
         template: function(text, data, options) {
             var a = arguments;
-            if (data) _.defaults(data, viewHelpers);
+            if (data) data = _.defaults(_.clone(data), viewHelpers);
             var render = origTemplateFunc.apply(this, a);
             return (render.constructor == Function) ? function(data) {
-                _.defaults(data, viewHelpers);
+                data = _.defaults(_.clone(data), viewHelpers);
                 return render(data);
             } : render;
         },

@@ -4,11 +4,9 @@ requirejs.config({
         jquery: 'lib/jquery',
         backbone: 'lib/backbone',
         lodash: 'lib/lodash',
-        'backbone.localstorage': 'lib/backbone.localStorage',
         text: 'lib/requirejs-text',
         ldsh: 'lib/lodash-template-loader',
         bootstrap: 'lib/bootstrap',
-        knockout: 'lib/knockout',
     },
     map: {
         '*': {
@@ -16,8 +14,11 @@ requirejs.config({
         }
     },
     shim: {
-        'backbone.localstorage': {
+        'lib/backbone.localstorage': {
             deps: ['lodash', 'backbone']
+        },
+        'lib/backbone.epoxy': {
+            deps: ['backbone']
         },
         backbone: {
             deps: ['lodash', 'jquery'],
@@ -25,15 +26,12 @@ requirejs.config({
         },
         bootstrap: {
             deps: ['jquery']
-        },
-        knockout: {
-
         }
     }
 });
 
 require(['peoplepool', 'jquery',
-        'lib/jquery.keyevent', 'lib/jquery.loadcss'
+        'lib/jquery.keyevent', 'lib/jquery.loadcss', 'lib/lodash.viewhelper'
     ],
     function(app, $) {
         $.loadCSS([
