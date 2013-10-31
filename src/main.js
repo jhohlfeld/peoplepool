@@ -6,7 +6,6 @@ requirejs.config({
         lodash: 'lib/lodash',
         text: 'lib/requirejs-text',
         ldsh: 'lib/lodash-template-loader',
-        bootstrap: 'lib/bootstrap',
     },
     map: {
         '*': {
@@ -24,14 +23,15 @@ requirejs.config({
             deps: ['lodash', 'jquery'],
             exports: 'Backbone'
         },
-        bootstrap: {
+        'lib/bootstrap': {
             deps: ['jquery']
         }
     }
 });
 
 require(['peoplepool', 'jquery',
-        'lib/jquery.keyevent', 'lib/jquery.loadcss', 'lib/lodash.viewhelper'
+        'lib/jquery.keyevent', 'lib/jquery.loadcss', 'lib/lodash.viewhelper',
+        'lib/bootstrap'
     ],
     function(app, $) {
         $.loadCSS([
