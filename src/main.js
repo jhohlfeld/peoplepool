@@ -36,7 +36,7 @@ require(['peoplepool', 'jquery',
     function(app, $) {
         $.loadCSS([
             'css/peoplepool.css',
-            '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
+            '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css'
         ]);
 
         new app.AppView().render();

@@ -30,7 +30,7 @@ module.exports = function(grunt) {
             development : {
                 options : {
                     paths: [
-                        'bower_components/bootstrap/less/',
+                        'bower_components/',
                         'src/less/'
                     ]
                 },
