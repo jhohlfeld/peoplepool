@@ -1,7 +1,7 @@
-define(['lib/backbone.plugin',
-        'views/view', 'views/people-list', 'views/add-people',
-        'views/people-item', 'views/master',
-        'models/models', 'lib/lodash.partials'
+define(['backbone_p',
+        'app/common/view', 'views/people-list', 'views/add-people',
+        'views/people-item', 'app/common/master',
+        'models/models', 'app/common/lodash.partials'
     ],
     function(Backbone, 
         View, PeopleListView, AddPeopleView,

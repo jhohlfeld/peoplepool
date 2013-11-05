@@ -1,4 +1,4 @@
-define(['lib/lodash.viewhelper', 'jquery', 'text!templates/partials.html'],
+define(['lib/lodash.viewhelper', 'jquery', 'text!./tpl/partials.html'],
     function(_, $, tpl) {
 
         var $parts = $(tpl).filter('script');

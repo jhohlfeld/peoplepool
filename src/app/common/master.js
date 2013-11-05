@@ -1,4 +1,4 @@
-define(['./view', 'ldsh!templates/master'], function(View, tpl) {
+define(['./view', 'ldsh!./tpl/master'], function(View, tpl) {
     return View.extend({
 
         template: tpl,

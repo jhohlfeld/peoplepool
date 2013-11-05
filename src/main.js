@@ -3,6 +3,7 @@ requirejs.config({
     paths: {
         jquery: 'lib/jquery',
         backbone: 'lib/backbone',
+        'backbone_p': 'lib/backbone.plugin',
         lodash: 'lib/lodash',
         text: 'lib/requirejs-text',
         ldsh: 'lib/lodash-template-loader',
@@ -13,14 +14,8 @@ requirejs.config({
         }
     },
     shim: {
-        'lib/backbone.localstorage': {
-            deps: ['lodash', 'backbone']
-        },
-        'lib/backbone.epoxy': {
-            deps: ['backbone']
-        },
-        backbone: {
-            deps: ['lodash', 'jquery'],
+        'backbone': {
+            deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
         'lib/bootstrap': {
@@ -29,11 +24,13 @@ requirejs.config({
     }
 });
 
-require(['peoplepool', 'jquery',
+require(['jquery',
+        'backbone_p',
+        'peoplepool',
         'lib/jquery.keyevent', 'lib/jquery.loadcss', 'lib/lodash.viewhelper',
         'lib/bootstrap'
     ],
-    function(app, $) {
+    function($, bb, app) {
         $.loadCSS([
             'css/peoplepool.css',
             '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css'

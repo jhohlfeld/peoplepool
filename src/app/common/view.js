@@ -1,4 +1,4 @@
-define(['jquery', 'lib/backbone.plugin', 'util/pubsub'], function($, Backbone, pubSub) {
+define(['jquery', 'backbone_p', 'util/pubsub'], function($, Backbone, pubSub) {
     var View = Backbone.Epoxy.View.extend({
 
         pubSub: null,

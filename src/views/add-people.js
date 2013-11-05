@@ -1,4 +1,4 @@
-define(['jquery', './view', 'ldsh!templates/add-people', ''],
+define(['jquery', 'app/common/view', 'ldsh!templates/add-people', ''],
     function($, View, tpl, PeopleListItem) {
         return View.extend({
             template: tpl,

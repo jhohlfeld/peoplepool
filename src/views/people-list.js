@@ -1,4 +1,4 @@
-define(['lodash', './view', './people-list-item',
+define(['lodash', 'app/common/view', './people-list-item',
         'ldsh!templates/people-list'
     ],
     function(_, View, PeopleListItemView, tpl) {

@@ -1,4 +1,4 @@
-define(['lib/jquery.editable', 'lodash', './view',
+define(['lib/jquery.editable', 'lodash', 'app/common/view',
         'ldsh!templates/people-item', 'backbone'
     ],
     function($, _, View, tpl, Backbone) {
