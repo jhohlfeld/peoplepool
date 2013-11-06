@@ -1,5 +1,5 @@
 define(['lib/jquery.editable', 'lodash', 'app/common/view',
-        'ldsh!templates/people-item', 'backbone_p',
+        'ldsh!./tpl/view', 'backbone_p',
         'app/people/list'
     ],
     function($, _, View, tpl, Backbone, ListView) {
@@ -45,7 +45,7 @@ define(['lib/jquery.editable', 'lodash', 'app/common/view',
             },
 
             delete: function(e) {
-                this.model.destroy();
+                this.model.collection.remove(this.model);
                 this.hide();
             }
         });

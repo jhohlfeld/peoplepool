@@ -1,9 +1,9 @@
 define(['backbone_p',
-        'app/common/view', 'views/people-list', 'views/add-people',
-        'views/people-item', 'app/common/master',
+        'app/common/view', 'app/people/list', 'views/add-people',
+        'app/people/view', 'app/common/master',
         'models/models', 'app/common/lodash.partials'
     ],
-    function(Backbone, 
+    function(Backbone,
         View, PeopleListView, AddPeopleView,
         PeopleItemView, MasterView,
         models) {
@@ -28,18 +28,18 @@ define(['backbone_p',
                     peopleList: new PeopleListView({
                         people: people
                     }),
-                    peopleItem: new PeopleItemView({model:new models.Person()}),
+                    peopleItem: new PeopleItemView(PeopleListView.model),
                     addPeople: new AddPeopleView({
                         people: people
                     }),
                 };
 
-                this.listenTo(this.pubSub, 'peoplelist:select', function(item) {
+                this.listenTo(this.views.peopleList, 'select', function(item, list) {
                     this.views.peopleItem.show(item.model);
                 });
-                this.listenTo(this.pubSub, 'peoplelist:unselect', function() {
-                    this.views.peopleItem.hide();
-                });
+
+                this.views.peopleItem.listenTo(this.views.peopleList, 'deselect', 
+                    this.views.peopleItem.hide);
 
                 this.masterView = new MasterView();
             },
