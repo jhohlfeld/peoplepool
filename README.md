@@ -43,11 +43,11 @@ That's it! The server should now run on `localhost:4000` where you can access th
 
 ----
 
-0: http://requirejs.org/
-1: http://backbonejs.org/
-2: http://lodash.com/
-3: http://gruntjs.com/
-4: http://bower.io/
-5: http://getbootstrap.com/
-6: http://www.meteor.com/
-7: http://blog.fogcreek.com/the-trello-tech-stack/
+[0]: http://requirejs.org/
+[1]: http://backbonejs.org/
+[2]: http://lodash.com/
+[3]: http://gruntjs.com/
+[4]: http://bower.io/
+[5]: http://getbootstrap.com/
+[6]: http://www.meteor.com/
+[7]: http://blog.fogcreek.com/the-trello-tech-stack/
