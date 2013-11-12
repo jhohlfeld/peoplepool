@@ -33,7 +33,8 @@ require(['jquery',
     function($, bb, app) {
         $.loadCSS([
             'css/peoplepool.css',
-            '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css'
+            '//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css',
+            '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.1/select2.css'
         ]);
 
         new app.AppView().render();

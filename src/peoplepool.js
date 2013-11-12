@@ -1,11 +1,11 @@
 define(['backbone_p',
         'app/common/view', 'app/people/list', 'views/add-people',
-        'app/people/view', 'app/common/master',
+        'app/people/view', 'app/tags/tags', 'app/common/master',
         'models/models', 'app/common/lodash.partials'
     ],
     function(Backbone,
         View, PeopleListView, AddPeopleView,
-        PeopleItemView, MasterView,
+        PeopleItemView, TagsView, MasterView,
         models) {
 
         var app = {};
@@ -47,6 +47,10 @@ define(['backbone_p',
             render: function() {
                 var $mv = this.masterView.render().$el;
                 $mv.find('#mainview').append(
+
+                    // test tags
+                    new TagsView().render().el,
+
                     this.views.peopleList.render().el,
                     this.views.addPeople.render().el);
                 $mv.find('#sidebar').append(

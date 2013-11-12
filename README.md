@@ -2,7 +2,7 @@
 
 This is a simple sandbox project. Inspired by the [meteor project][6] and the [trello stack][7], it is meant to test a certain type of architecture (mobile-first, single-page, data-on-the-wire) for web applications.
 
-It's done using [require.js][0] along with [backbone.js][1] together with a set of plugins. Once finished, it will be a proof of technology, providing experience - and eventually documentation - for a wholesale technology stack, containint
+It's done using [require.js][0] along with [backbone.js][1] together with a set of plugins. Once finished, it will be a proof of technology, providing experience - and eventually documentation - for a wholesale technology stack, containing
 
  * [grunt][3]
  * [bower][4]
