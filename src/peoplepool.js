@@ -1,11 +1,11 @@
 define(['backbone_p',
         'app/common/view', 'app/people/list', 'views/add-people',
-        'app/people/view', 'app/tags/tags', 'app/common/master',
+        'app/people/view', 'app/tags/edit', 'app/common/master',
         'models/models', 'app/common/lodash.partials'
     ],
     function(Backbone,
         View, PeopleListView, AddPeopleView,
-        PeopleItemView, TagsView, MasterView,
+        PeopleItemView, Tags, MasterView,
         models) {
 
         var app = {};
@@ -38,7 +38,7 @@ define(['backbone_p',
                     this.views.peopleItem.show(item.model);
                 });
 
-                this.views.peopleItem.listenTo(this.views.peopleList, 'deselect', 
+                this.views.peopleItem.listenTo(this.views.peopleList, 'deselect',
                     this.views.peopleItem.hide);
 
                 this.masterView = new MasterView();
@@ -46,16 +46,28 @@ define(['backbone_p',
 
             render: function() {
                 var $mv = this.masterView.render().$el;
+
+                // test tags
+                var tagsCollection = new Tags.TagsCollection([{
+                    label: 'Riese'
+                }, {
+                    label: 'Zwerg'
+                }]);
+                var editable;
+
                 $mv.find('#mainview').append(
 
-                    // test tags
-                    new TagsView().render().el,
+                    $('<div class="form-group">').append(editable = new Tags.TagsView({
+                        collection: tagsCollection
+                    }).render().el),
 
                     this.views.peopleList.render().el,
                     this.views.addPeople.render().el);
                 $mv.find('#sidebar').append(
                     this.views.peopleItem.render().el);
                 $mv.appendTo(this.$el.html(''));
+
+                // $(editable).editable();
             },
         });
 

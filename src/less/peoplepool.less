@@ -1,81 +1,70 @@
 .text-muted {
-	font-style: italic;
+    font-style: italic;
 }
-
 #peoplepool {
-	position: relative;
-	width: 80%;
-	margin: 4% auto;
+    position: relative;
+    width: 80%;
+    margin: 4% auto;
 }
-
 #people-list {
 }
-
 #peoplepool .people-item {
-	
-	.btn-settings {
-	    text-align: right;
-	    float: right;
-	    color: @gray-dark;
-	    cursor: pointer;
-	}
-
-	.tags .label {
-		cursor: pointer;
-	}
-
-	.btn-settings {
-		float: right;
-		color: @gray-light;
-
-		&:hover, &:focus {
-			text-decoration: none;
-		}
-	}
-
+    .btn-settings {
+        text-align: right;
+        float: right;
+        color: @gray-dark;
+        cursor: pointer;
+    }
+    .tags .label {
+        cursor: pointer;
+    }
+    .btn-settings {
+        float: right;
+        color: @gray-light;
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
 }
-
 .people-item__settings {
-	position: absolute;
-	top: 2em;
-	left: 70%;
-	
-	&.open {
-		display:block;
-	}
+    position: absolute;
+    top: 2em;
+    left: 70%;
+    &.open {
+        display:block;
+    }
 }
-
 p.editable {
-
-	position: relative;
-	cursor: pointer;
-	line-height: 2.45em;
-	
-	input {
-		width: 96%;
-	}
-	
-	div {
-		width: 96%;
-		display: block;
-		overflow: hidden;
-	}
-
-	i.fa {
-		position: absolute;
-		left: 97%;
-		top: 30%;
-		color: @gray-light;
-		display: none;
-	}
-
-	&:hover > i.fa {
-		display: block;
-	}
+    position: relative;
+    cursor: pointer;
+    line-height: 2.45em;
+    input {
+        width: 96%;
+    }
+    div {
+        width: 96%;
+        display: block;
+        overflow: hidden;
+    }
+    i.fa {
+        position: absolute;
+        left: 97%;
+        top: 30%;
+        color: @gray-light;
+        display: none;
+    }
+    &:hover > i.fa {
+        display: block;
+    }
 }
+ .form-group {
+ 	
+	// bootstrap-tagsinput fix
+    .bootstrap-tagsinput {
+        width: 100%;
+    }
 
-/** bootstrap-tagsinput fixes **/
-
-.form-group .bootstrap-tagsinput {
-	width: 100%;
+    .label {
+        margin: .2em;
+    }
 }
