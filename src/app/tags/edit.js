@@ -1,10 +1,17 @@
+/**
+ * Here we got a tag view that already implements in-place editing (#editable).
+ *
+ */
 define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone, $, _, tpl) {
 
+    // model for tags
     var TagModel = Backbone.Model.extend({
         defaults: {
             label: ''
         }
     });
+
+    // view for single tag
     var TagItemView = Backbone.Epoxy.View.extend({
         el: '<span class="label label-primary"/>',
         model: TagModel,
@@ -12,6 +19,8 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
             ':el': 'text:label'
         }
     });
+
+    // collection of tags
     var TagsCollection = Backbone.Collection.extend({
         model: TagModel,
         view: TagItemView,
@@ -22,14 +31,11 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
         }
     });
 
+    // tag's normal view
     var TagsView = Backbone.Epoxy.View.extend({
         el: tpl(),
         bindings: {
             '.tags': 'collection:$collection'
-        },
-
-        events: {
-            'click': 'edit'
         },
 
         initialize: function() {
@@ -38,19 +44,22 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
             });
             this.collection = this.options.collection || new TagsCollection();
             this.$tags = this.$('.tags');
+            this.$el.on('click', _.bind(this.edit, this));
         },
 
         edit: function(e) {
-            if (!this.editView) {
-                this.editView = new TagsEditView({
-                    tagsView: this
-                });
-                this.listenTo(this.editView, 'destroy', function() {
-                    this.$el.toggleClass(this.options.editClassName);
-                    this.stopListening(this.editView);
-                    this.editView = null;
-                });
+            if (this.editView) {
+                return;
             }
+            e.preventDefault();
+            this.editView = new TagsEditView({
+                tagsView: this
+            });
+            this.listenToOnce(this.editView, 'destroy', function() {
+                this.$el.toggleClass(this.options.editClassName);
+                this.stopListening(this.editView);
+                this.editView = null;
+            });
             this.$el.toggleClass(this.options.editClassName);
             this.editView.render();
         },
@@ -72,6 +81,7 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
         }
     });
 
+    // tag's edit view
     var TagsEditView = Backbone.View.extend({
         el: '<input type="text" class="form-control">',
         initialize: function() {
@@ -82,7 +92,12 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
                 this.$input.select()
             });
             this.$input.on('keydown keyup', _.bind(this.enter, this));
-            this.$input.on('blur', _.bind(this.destroy, this));
+            $(document).on('click', _.bind(function(e) {
+                var p = $(e.target).parentsUntil('document');
+                if (!_.contains(p, this.tagsView.el)) {
+                    this.destroy();
+                }
+            }, this));
         },
 
         recalculate: function() {
