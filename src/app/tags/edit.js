@@ -1,4 +1,4 @@
-define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
+define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone, $, _, tpl) {
 
     var TagModel = Backbone.Model.extend({
         defaults: {
@@ -23,8 +23,9 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
     });
 
     var TagsView = Backbone.Epoxy.View.extend({
+        el: tpl(),
         bindings: {
-            ':el': 'collection:$collection'
+            '.tags': 'collection:$collection'
         },
 
         events: {
@@ -32,7 +33,11 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
         },
 
         initialize: function() {
+            this.options = _.defaults(this.options, {
+                editClassName: 'editable-edit'
+            });
             this.collection = this.options.collection || new TagsCollection();
+            this.$tags = this.$('.tags');
         },
 
         edit: function(e) {
@@ -41,10 +46,12 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
                     tagsView: this
                 });
                 this.listenTo(this.editView, 'destroy', function() {
+                    this.$el.toggleClass(this.options.editClassName);
                     this.stopListening(this.editView);
                     this.editView = null;
                 });
             }
+            this.$el.toggleClass(this.options.editClassName);
             this.editView.render();
         },
 
@@ -66,21 +73,14 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
     });
 
     var TagsEditView = Backbone.View.extend({
-        el: '<div><input type="text" class="form-control"></div>',
+        el: '<input type="text" class="form-control">',
         initialize: function() {
             this.tagsView = this.options.tagsView;
-            this.$tags = this.tagsView.$el;
-            this.$tagsOriginalCss = this.$tags.css(['position', 'top', 'padding']);
-            this.$tags.css({
-                'position': 'absolute',
-                'top': 0,
-                'padding': '.4em'
-            });
-            this.$input = this.$('input');
+            this.$tags = this.tagsView.$tags;
+            this.$input = this.$el;
             this.on('afterRender', function() {
                 this.$input.select()
             });
-            // this.listenTo(this.$input, 'keyup', this.enter);
             this.$input.on('keydown keyup', _.bind(this.enter, this));
             this.$input.on('blur', _.bind(this.destroy, this));
         },
@@ -106,7 +106,7 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
         },
 
         render: function() {
-            this.$el.insertBefore(this.tagsView.$el);
+            this.$el.insertAfter(this.$tags);
             this.recalculate();
             this.trigger('afterRender', this);
             return this;
@@ -137,7 +137,6 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
         },
 
         destroy: function(e) {
-            this.tagsView.$el.css(this.$tagsOriginalCss);
             this.trigger('destroy');
             this.remove();
         }

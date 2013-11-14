@@ -34,7 +34,7 @@
         display:block;
     }
 }
-p.editable {
+.editable {
     position: relative;
     cursor: pointer;
     line-height: 2.45em;
@@ -56,14 +56,24 @@ p.editable {
     &:hover > i.fa {
         display: block;
     }
+    .tags {
+        .label {
+            position: relative;
+        }
+    }
+    &.editable-edit {
+    	.tags {
+	        padding: 0 .4em;
+	        width: auto;
+	        position: absolute;;
+	    }
+    }
 }
- .form-group {
- 	
-	// bootstrap-tagsinput fix
+.form-group {
+    // bootstrap-tagsinput fix 
     .bootstrap-tagsinput {
         width: 100%;
     }
-
     .label {
         margin: .2em;
     }
