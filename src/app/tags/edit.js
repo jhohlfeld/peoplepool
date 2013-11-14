@@ -32,14 +32,20 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
         },
 
         initialize: function() {
-            // this.$el.hide();
             this.collection = this.options.collection || new TagsCollection();
         },
 
         edit: function(e) {
-            var ed = new TagsEditView({
-                tagsView: this
-            }).render();
+            if (!this.editView) {
+                this.editView = new TagsEditView({
+                    tagsView: this
+                });
+                this.listenTo(this.editView, 'destroy', function() {
+                    this.stopListening(this.editView);
+                    this.editView = null;
+                });
+            }
+            this.editView.render();
         },
 
         getItems: function() {
@@ -63,7 +69,9 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
         el: '<div><input type="text" class="form-control"></div>',
         initialize: function() {
             this.tagsView = this.options.tagsView;
-            this.$tags = this.tagsView.$el.css({
+            this.$tags = this.tagsView.$el;
+            this.$tagsOriginalCss = this.$tags.css(['position', 'top', 'padding']);
+            this.$tags.css({
                 'position': 'absolute',
                 'top': 0,
                 'padding': '.4em'
@@ -74,6 +82,7 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
             });
             // this.listenTo(this.$input, 'keyup', this.enter);
             this.$input.on('keydown keyup', _.bind(this.enter, this));
+            this.$input.on('blur', _.bind(this.destroy, this));
         },
 
         recalculate: function() {
@@ -125,6 +134,12 @@ define(['backbone_p', 'jquery', 'lodash'], function(Backbone, $, _) {
             if (text.length < 1) return;
             this.tagsView.addItem(text);
             this.recalculate();
+        },
+
+        destroy: function(e) {
+            this.tagsView.$el.css(this.$tagsOriginalCss);
+            this.trigger('destroy');
+            this.remove();
         }
     });
 
