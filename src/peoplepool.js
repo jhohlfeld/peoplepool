@@ -1,11 +1,11 @@
 define(['backbone_p',
         'app/common/view', 'app/people/list', 'views/add-people',
-        'app/people/view', 'app/tags/edit', 'app/common/master',
+        'app/people/detail', 'app/tags/tags', 'app/common/master',
         'models/models', 'app/common/lodash.partials'
     ],
     function(Backbone,
         View, PeopleListView, AddPeopleView,
-        PeopleItemView, Tags, MasterView,
+        PeopleItemDetail, Tags, MasterView,
         models) {
 
         var app = {};
@@ -19,7 +19,7 @@ define(['backbone_p',
 
                 // people collection
                 var people = new app.PeopleList();
-                people.on('change', function(model) {
+                people.on('change update', function(model) {
                     this.sync('update', model);
                 });
                 people.fetch();
@@ -28,7 +28,7 @@ define(['backbone_p',
                     peopleList: new PeopleListView({
                         people: people
                     }),
-                    peopleItem: new PeopleItemView(PeopleListView.model),
+                    peopleItem: new PeopleItemDetail(PeopleListView.model),
                     addPeople: new AddPeopleView({
                         people: people
                     }),

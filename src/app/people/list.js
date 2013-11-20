@@ -1,4 +1,4 @@
-define(['backbone_p', 'lodash', 'jquery'], function(Backbone, _, $) {
+define(['backbone_p', 'lodash', 'jquery', 'app/tags/tags'], function(Backbone, _, $, Tags) {
 
     var pubsub = _.extend({}, Backbone.Events);
 
@@ -30,7 +30,7 @@ define(['backbone_p', 'lodash', 'jquery'], function(Backbone, _, $) {
         defaults: {
             name: '',
             email: '',
-            tags: [],
+            tags: new Tags.TagsCollection(),
             selected: false
         },
         referenceModel: null,

@@ -1,8 +1,8 @@
 define(['lib/jquery.editable', 'lodash', 'app/common/view',
-        'ldsh!templates/people-item', 'backbone_p',
-        'app/people/list'
+        'ldsh!./tpl/detail', 'backbone_p',
+        'app/people/list', 'app/tags/tags'
     ],
-    function($, _, View, tpl, Backbone, ListView) {
+    function($, _, View, tpl, Backbone, ListView, Tags) {
 
         return View.extend({
 
@@ -18,8 +18,7 @@ define(['lib/jquery.editable', 'lodash', 'app/common/view',
 
             bindings: {
                 'input[name=name]': "value:name",
-                'input[name=email]': "value:email",
-                'p.tags': 'text:tags'
+                'input[name=email]': "value:email"
             },
 
             initialize: function() {
@@ -27,12 +26,22 @@ define(['lib/jquery.editable', 'lodash', 'app/common/view',
                 this.$('input').editable({
                     replacement: '<div/>'
                 });
+                this.tagsView = new Tags.TagsView({
+                    collection: this.model.get('tags')
+                });
+            },
+
+            render: function() {
+                View.prototype.render.apply(this);
+                this.$('.form-group-tags').append(this.tagsView.render().el);
+                return this;
             },
 
             show: function(model) {
                 if (model) {
                     this.model = model;
                     this.applyBindings();
+                    this.tagsView.setCollection(this.model.get('tags'));
                 }
                 this.$('input').editable();
                 this.$el.show();
@@ -45,7 +54,7 @@ define(['lib/jquery.editable', 'lodash', 'app/common/view',
             },
 
             delete: function(e) {
-                this.model.destroy();
+                this.model.collection.remove(this.model);
                 this.hide();
             }
         });

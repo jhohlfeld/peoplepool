@@ -2,7 +2,7 @@
  * Here we got a tag view that already implements in-place editing (#editable).
  *
  */
-define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone, $, _, tpl) {
+define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/tags'], function(Backbone, $, _, tpl) {
 
     // model for tags
     var TagModel = Backbone.Model.extend({
@@ -37,6 +37,7 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
         bindings: {
             '.tags': 'collection:$collection'
         },
+        $muted: null,
 
         initialize: function() {
             this.options = _.defaults(this.options, {
@@ -45,6 +46,10 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
             this.collection = this.options.collection || new TagsCollection();
             this.$tags = this.$('.tags');
             this.$el.on('click', _.bind(this.edit, this));
+            this.$muted = $('<i class="text-muted">Enter value here</i>').appendTo(this.$el);
+            if (this.collection.length > 0) {
+                this.$muted.hide();
+            }
         },
 
         edit: function(e) {
@@ -57,10 +62,12 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
             });
             this.listenToOnce(this.editView, 'destroy', function() {
                 this.$el.toggleClass(this.options.editClassName);
+                if (!(this.collection.length > 0)) this.$muted.show();
                 this.stopListening(this.editView);
                 this.editView = null;
             });
             this.$el.toggleClass(this.options.editClassName);
+            this.$muted.hide();
             this.editView.render();
         },
 
@@ -78,6 +85,12 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/edit'], function(Backbone,
             this.collection.add({
                 label: text
             });
+        },
+
+        setCollection: function(collection) {
+            this.collection = collection;
+            this.applyBindings();
+            this.$muted[this.collection.length > 0 ? 'hide' : 'show']();
         }
     });
 
