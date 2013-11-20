@@ -47,27 +47,12 @@ define(['backbone_p',
             render: function() {
                 var $mv = this.masterView.render().$el;
 
-                // test tags
-                var tagsCollection = new Tags.TagsCollection([{
-                    label: 'Riese'
-                }, {
-                    label: 'Zwerg'
-                }]);
-                var editable;
-
                 $mv.find('#mainview').append(
-
-                    $('<div class="form-group">').append(editable = new Tags.TagsView({
-                        collection: tagsCollection
-                    }).render().el),
-
                     this.views.peopleList.render().el,
                     this.views.addPeople.render().el);
                 $mv.find('#sidebar').append(
                     this.views.peopleItem.render().el);
                 $mv.appendTo(this.$el.html(''));
-
-                // $(editable).editable();
             },
         });
 
