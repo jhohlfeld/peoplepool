@@ -8,7 +8,7 @@ It's done using [require.js][0] along with [backbone.js][1] together with a set 
  * [bower][4]
  * (jasmine - still to be added)
  * requirejs
- * backbone, [lodash][2]
+ * backbone, [epoxy][8], [lodash][2]
  * [bootstrap][5]
 
 This simple demo app takes lets the user create a list of people and edit their profile details.
@@ -51,3 +51,4 @@ That's it! The server should now run on `localhost:4000` where you can access th
 [5]: http://getbootstrap.com/
 [6]: http://www.meteor.com/
 [7]: http://blog.fogcreek.com/the-trello-tech-stack/
+[8]: https://github.com/gmac/backbone.epoxy
