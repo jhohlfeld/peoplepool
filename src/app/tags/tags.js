@@ -5,18 +5,23 @@
 define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/tags'], function(Backbone, $, _, tpl) {
 
     // model for tags
-    var TagModel = Backbone.Model.extend({
+    var TagModel = Backbone.Epoxy.Model.extend({
         defaults: {
             label: ''
+        },
+        computeds: {
+            cid: function() {
+                return this.cid;
+            }
         }
     });
 
     // view for single tag
     var TagItemView = Backbone.Epoxy.View.extend({
-        el: '<span class="label label-primary"/>',
+        el: '<span class="label label-primary" />',
         model: TagModel,
         bindings: {
-            ':el': 'text:label'
+            ':el': 'text:label,attr:{"data-cid":cid}'
         }
     });
 
@@ -174,6 +179,8 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/tags'], function(Backbone,
         TagsView: TagsView,
         TagsCollection: TagsCollection
     }
+
+    // helper method for extracting styles
 
     function getStyle(el, styleProp) {
         var camelize = function(str) {

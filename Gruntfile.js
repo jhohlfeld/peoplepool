@@ -46,6 +46,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bower');
     grunt.loadNpmTasks('grunt-contrib-less');
 
-    grunt.registerTask('build', ['clean', 'copy:build', 'bower:build', 'less:development']);
+    grunt.registerTask('build', ['copy:build', 'bower:build', 'less:development']);
 
 };

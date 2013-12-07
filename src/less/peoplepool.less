@@ -42,32 +42,60 @@
     input {
         width: 96%;
     }
-    div {
+
+    input[type=text], .input {
         width: 96%;
         display: block;
-        overflow: hidden;
     }
-    i.fa {
+
+    i.edit-icon.fa {
         position: absolute;
         left: 97%;
         top: 30%;
         color: @gray-light;
         display: none;
     }
-    &:hover > i.fa {
+
+    &:hover > i.edit-icon.fa {
         display: block;
     }
+
     .tags {
         .label {
             position: relative;
+            display: inline-block;
+            margin: 0 .2em;
+            line-height: 1.35em;
+        }
+
+        .tag-panel {
+            position: absolute;
+            padding: 4px 2px;
+            z-index: 3;
+
+            font-size: @font-size-base;
+            background-color: @dropdown-bg;
+            border: 1px solid @dropdown-fallback-border; // IE8 fallback
+            border: 1px solid @dropdown-border;
+            border-radius: @border-radius-base;
+            .box-shadow(0 6px 12px rgba(0,0,0,.175));
+
+            .tag-delete {
+                margin-left: .3em;
+            }
+
+            .label {
+                display: block;
+            }
         }
     }
+
     &.editable-edit {
-    	.tags {
-	        padding: 0 .4em;
-	        width: auto;
-	        position: absolute;
-	        top: -1px;
+        .tags {
+            padding: 0 .4em;
+            width: auto;
+            position: absolute;
+            top: -1px;
 	    }
     }
 }

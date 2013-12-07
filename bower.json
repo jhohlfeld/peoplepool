@@ -17,8 +17,8 @@
     "bootstrap": "~3.0.0",
     "lodash-template-loader": "~0.1.2",
     "backbone.epoxy": "~1.0.2",
-    "bootstrap-tagsinput": "~0.3.9",
-    "typeahead.js": "~0.9.3"
+    "typeahead.js": "~0.9.3",
+    "copycss": "https://github.com/moagrius/copycss.git"
   },
   "resolutions": {
     "jquery": ">= 1.9.0"

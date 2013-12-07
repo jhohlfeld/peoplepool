@@ -1,4 +1,15 @@
-define(['jquery'], function($) {
+/**
+ * Add a number of plugins to the jquery library.
+ * 
+ * @module jquery.plugin
+ * @author Jakob hohlfeld <jakob.hohlfeld@netronaut.de>
+ */
+define(['jquery', 'lib/copycss'], function($) {
+
+    /**
+     * Add another plugin - loadCss
+     *
+     */
     var loadCSS = function(url, callback) {
         var f = function(u) {
             var m, type = (m = u.match(/.(\w+)$/)) ? m[1] : 'css',
@@ -22,5 +33,6 @@ define(['jquery'], function($) {
     $.extend({
         loadCSS: loadCSS
     });
-    return loadCSS;
+
+    return $;
 });
