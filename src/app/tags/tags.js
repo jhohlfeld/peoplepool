@@ -48,7 +48,7 @@ define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/tags'], function(Backbone,
             this.options = _.defaults(this.options, {
                 editClassName: 'editable-edit'
             });
-            this.collection = this.options.collection || new TagsCollection();
+            var c = this.collection = this.options.collection || new TagsCollection();
             this.$tags = this.$('.tags');
             this.$el.on('click', _.bind(this.edit, this));
             this.$muted = $('<i class="text-muted">Enter value here</i>').appendTo(this.$el);

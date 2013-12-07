@@ -23,10 +23,10 @@ define(['jquery'], function($) {
      *
      */
     Tagsinput.prototype.showPanel = function(e) {
-        this.$tag = $(e.target);
+        this.$tag = (e && e.target) ? $(e.target) : e;
         e.preventDefault();
         if (this.$curPanel) {
-            this.$curPanel.hide();
+            this.hidePanel();
         }
         var $panel = this.getPanel(this.$tag),
             p = this.$tag.position();
@@ -36,16 +36,35 @@ define(['jquery'], function($) {
         });
         $panel.show();
         this.$curPanel = $panel;
+        var that = this;
+        setTimeout(function() {
+            $(document).on('mouseover', $.proxy(that.closeListener, that));
+        }, 0);
     };
+
+    Tagsinput.prototype.closeListener = function(e) {
+        // if mouse movement over document or window
+        // is not within my panel..
+        var t = e.originalEvent.target;
+        if (t == this.$curPanel[0] || $.contains(this.$curPanel[0], t)) {
+            return;
+        }
+
+        // otherwise close me
+        this.hidePanel();
+    }
 
     /**
      * Hide tag panel.
      *
      */
-    Tagsinput.prototype.hidePanel = function(e) {
-        if (e.target != this.$curPanel[0]) return;
-        this.$curPanel.hide();
+    Tagsinput.prototype.hidePanel = function(e, remove) {
+        if (e && e.target && e.target != this.$curPanel[0]) {
+            return;
+        }
+        this.$curPanel[remove ? 'remove' : 'detach']();
         this.$curPanel = null;
+        $(document).off('mouseover');
     };
 
     /**
@@ -55,7 +74,7 @@ define(['jquery'], function($) {
      *
      */
     Tagsinput.prototype.deleteTag = function(e) {
-        this.$curPanel.remove();
+        this.hidePanel(null, true);
         $.proxy(this.items.trigger, this.$tag, 'delete')();
         return false;
     };
@@ -74,14 +93,12 @@ define(['jquery'], function($) {
             // create panel
             $panel = $('<span class="tag-panel">').css({
                 'display': 'block'
-            }).append(copy = $tag.clone());
+            }).append(copy = $tag.clone()).hide();
             copy.append(del = $('<i class="fa fa-times-circle tag-delete">'));
-            $tag.before($panel);
             zIndex = parseInt($panel.css('z-index'));
             this.$tag.css('z-index', zIndex - 1).data('hover-placeholder', $panel);
 
             // add events
-            $panel.on('mouseout', $.proxy(this.hidePanel, this));
             del.on('click', $.proxy(this.deleteTag, this));
 
             // block 'click' on the panel
@@ -89,6 +106,9 @@ define(['jquery'], function($) {
                 return false;
             });
         }
+
+        // insert in page
+        $tag.before($panel);
         return $panel;
     };
 
