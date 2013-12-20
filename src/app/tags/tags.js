@@ -2,7 +2,8 @@
  * Here we got a tag view that already implements in-place editing (#editable).
  *
  */
-define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/tags'], function(Backbone, $, _, tpl) {
+define(['backbone_p', 'jquery', 'lodash', 'ldsh!./tpl/tags'], function(
+    Backbone, $, _, tpl) {
 
     // model for tags
     var TagModel = Backbone.Epoxy.Model.extend({

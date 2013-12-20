@@ -24,5 +24,9 @@
   "keywords": [
     "backbone",
     "lesson"
-  ]
+  ],
+  "devDependencies": {
+    "grunt-bower-requirejs": "~0.8.0",
+    "grunt-bower-task": "~0.3.4"
+  }
 }

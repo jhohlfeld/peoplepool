@@ -4,7 +4,7 @@
  * @module jquery.plugin
  * @author Jakob hohlfeld <jakob.hohlfeld@netronaut.de>
  */
-define(['jquery', 'lib/copycss'], function($) {
+define(['jquery'], function($) {
 
     /**
      * Add another plugin - loadCss

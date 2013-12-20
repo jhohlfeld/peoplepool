@@ -19,10 +19,11 @@ module.exports = function(grunt) {
             }
         },
         bower: {
-            build: {
-                dest: 'build/lib/',
+            install: {
                 options: {
-                    stripJsAffix: true
+                    layout: 'byType',
+                    targetDir: './build/lib',
+                    cleanTargetDir: true
                 }
             }
         },
@@ -43,9 +44,8 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-bower');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-bower-task');
 
-    grunt.registerTask('build', ['copy:build', 'bower:build', 'less:development']);
-
+    grunt.registerTask('build', ['bower:install', 'copy:build', 'less:development']);
 };
