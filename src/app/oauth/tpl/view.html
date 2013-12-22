@@ -1,10 +1,11 @@
-<div>
 <h2>Log In with one of theese APIs!</h2>
 
-<ul>
+<div class="row">
+
+<ul class="col-md-3 social-buttons">
 <% _.forIn(apis, function(api, key) { %>
 <li>
-	<a href="javascript:void(0);" data-ref="<%- key%>"><img src="<%- api.signInButton %>" title="<%- api.name %>" /></a>
+	<a class="btn btn-<%- key %>" href="javascript:void(0);"><i class="fa fa-<%- key %>"></i>Sign-In with <%- api.name%></a>
 </li>
 <% }); %>
 </ul>

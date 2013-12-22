@@ -1,5 +1,8 @@
-define(['lodash', 'backbone_p', './api/gplus'], function(_, Backbone,
-    GplusApi) {
+define(['lodash', 'backbone_p',
+    './api/google-plus', './api/facebook', './api/github',
+    './api/stack-exchange', './api/twitter', './api/dropbox'
+], function(_, Backbone,
+    googleplus, facebook, github, stackexchange, twitter, dropbox) {
 
     var OAuthManager = function() {
         this.status = 'logged-out';
@@ -34,43 +37,47 @@ define(['lodash', 'backbone_p', './api/gplus'], function(_, Backbone,
         }).join('&');
 
         var poll,
-            w = window.open(req, 'Google+ Login Window', "width=640,height=640");
+            w = window.open(req, 'Google+ Login Window');
 
         (poll = function() {
             try {
                 if (w.closed) {
                     return;
                 }
+                var hash = w.location.hash;
+                if (hash != '' && hash.search(/access_token/)) {
+                    var resp = {},
+                        a = hash.substr(1).split('&'),
+                        p = _.forEach(a, function(q) {
+                            var k = q.split('=');
+                            resp[k[0]] = k[1];
+                        });
+                    w.close();
+                    if (!resp.error) {
+                        self.authApi = apiName;
+                        this.status = 'authenticated';
+                        self.trigger('authenticate', resp);
+                    } else {
+                        this.status = error;
+                        this.apiError = resp.error;
+                        self.trigger('autherror', resp);
+                    }
+                    return;
+                }
             } catch (e) {
                 // console.log('not allowed to contact window');
-                return;
-            }
-            var hash = w.location.hash;
-            if (hash != '' && hash.search(/access_token/)) {
-                var resp = {},
-                    a = hash.substr(1).split('&'),
-                    p = _.forEach(a, function(q) {
-                        var k = q.split('=');
-                        resp[k[0]] = k[1];
-                    });
-                w.close();
-                if(!resp.error) {
-	                self.authApi = apiName;
-	                this.status = 'authenticated';
-	                self.trigger('authenticate', resp);
-                } else {
-                	this.status = error;
-                	this.apiError = resp.error;
-                	self.trigger('autherror', resp);
-                }
-                return;
             }
             setTimeout(poll, 100);
         })();
     };
 
     var manager = new OAuthManager();
-    manager.addApi('gplus', GplusApi);
+    manager.addApi('google-plus', googleplus);
+    manager.addApi('facebook', facebook);
+    // manager.addApi('twitter', twitter);
+    // manager.addApi('github', github);
+    manager.addApi('stack-exchange', stackexchange);
+    // manager.addApi('dropbox', dropbox);
 
     return manager;
 });

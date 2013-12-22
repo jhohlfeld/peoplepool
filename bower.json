@@ -17,7 +17,8 @@
     "lodash-template-loader": "~0.1.2",
     "backbone.epoxy": "~1.0.2",
     "typeahead.js": "~0.9.3",
-    "requirejs-plugins": "~1.0.2"
+    "requirejs-plugins": "~1.0.2",
+    "bootstrap-social-buttons": "~1.0.0"
   },
   "resolutions": {
     "jquery": ">= 1.9.0"

@@ -20,7 +20,7 @@ define(['lodash', 'backbone_p', 'ldsh!./tpl/view', './manager'], function(
             var self = this;
             _.forIn(this.manager.getApis(), function(api, key) {
                 var cb = _.bind(self.manager.authenticate, self.manager, key);
-                self.$('[data-ref=' + key + ']').on('click', cb);
+                self.$('.btn-' + key).on('click', cb);
             });
         }
     });
