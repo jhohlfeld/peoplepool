@@ -1,8 +1,10 @@
 define(['lodash', 'backbone_p',
     './api/google-plus', './api/facebook', './api/github',
-    './api/stack-exchange', './api/twitter', './api/dropbox'
+    './api/stack-exchange', './api/twitter', './api/dropbox', 
+    './api/microsoft-live'
 ], function(_, Backbone,
-    googleplus, facebook, github, stackexchange, twitter, dropbox) {
+    googleplus, facebook, github, stackexchange, twitter, dropbox,
+    microsoft) {
 
     var OAuthManager = function() {
         this.status = 'logged-out';
@@ -78,6 +80,7 @@ define(['lodash', 'backbone_p',
     // manager.addApi('github', github);
     manager.addApi('stack-exchange', stackexchange);
     // manager.addApi('dropbox', dropbox);
+    manager.addApi('windows', microsoft);
 
     return manager;
 });
