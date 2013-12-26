@@ -1,16 +1,17 @@
-define(['lodash', 'backbone_p', 'ldsh!./tpl/view', './manager'], function(
-    _, Backbone, tpl, apiManager) {
+define(['lodash', 'backbone_p', 'ldsh!./tpl/view', './api/oauth'], function(
+    _, Backbone, tpl, oauth) {
 
     var OAuthView = Backbone.View.extend({
         template: tpl,
+        className: 'social-buttons',
 
         initialize: function() {
-            this.manager = this.options.manager || apiManager;
+            this.apis = oauth.getApis(['google-plus', 'facebook', 'stack-exchange', 'windows']);
         },
 
         render: function() {
-            this.setElement(this.template({
-                apis: this.manager.getApis()
+            this.$el.append(this.template({
+                apis: this.apis
             }));
             this.bindEvents();
             return this;
@@ -18,8 +19,8 @@ define(['lodash', 'backbone_p', 'ldsh!./tpl/view', './manager'], function(
 
         bindEvents: function() {
             var self = this;
-            _.forIn(this.manager.getApis(), function(api, key) {
-                var cb = _.bind(self.manager.authenticate, self.manager, key);
+            _.forIn(this.apis, function(api, key) {
+                var cb = _.bind(oauth.request, null, api);
                 self.$('.btn-' + key).on('click', cb);
             });
         }
@@ -27,6 +28,5 @@ define(['lodash', 'backbone_p', 'ldsh!./tpl/view', './manager'], function(
 
     return {
         OAuthView: OAuthView,
-        manager: apiManager
     }
 });

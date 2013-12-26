@@ -21,22 +21,24 @@ module.exports = function(grunt) {
         bower: {
             install: {
                 options: {
-                    layout: 'byType',
+                    install: false,
+                    layout: 'byComponent',
                     targetDir: './build/lib',
-                    cleanTargetDir: true
+                    cleanTargetDir: true,
+                    verbose: false
                 }
             }
         },
-        less : {
-            development : {
-                options : {
+        less: {
+            development: {
+                options: {
                     paths: [
                         'bower_components/',
                         'src/less/'
                     ]
                 },
                 files: {
-                    'build/css/peoplepool.css' : 'src/less/main.less'
+                    'build/css/peoplepool.css': 'src/less/main.less'
                 }
             }
         }

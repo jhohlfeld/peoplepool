@@ -5,11 +5,15 @@ define(['lodash'], function(_) {
         authParams: {
             app_id: '568262759920841',
             client_id: 'ce767453b23218cdaf145b8dbb2aede7',
-            redirect_uri: 'http://localhost:4000/blank.html',
+            redirect_uri: 'http://dev.peoplepool.netronaut.de:4000/blank.html',
             response_type: 'token',
             scope: 'email'
         }
     };
 
-    return config;
+    return {
+        init: function(Profile) {
+            return Profile.apis['facebook'] = new Profile(config);
+        }
+    };
 });
